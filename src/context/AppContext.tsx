@@ -1,7 +1,7 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect, ReactNode } from 'react';
 import { User } from '@/types';
 import { authService } from '@/services/authService';
-import { LoadingSpinner } from '@/components/LoadingSpinner';
+import { useNotification } from '@/hooks/useNotification';
 
 interface AppContextType {
   user: User | null;
@@ -9,11 +9,12 @@ interface AppContextType {
   loading: boolean;
 }
 
-const AppContext = createContext<AppContextType | undefined>(undefined);
+export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const { addNotification } = useNotification();
 
   useEffect(() => {
     const initializeAuth = async () => {
@@ -21,30 +22,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
         const currentUser = await authService.getCurrentUser();
         setUser(currentUser);
       } catch (error) {
-        console.error('Auth initialization error:', error);
+        addNotification('Erreur lors de la récupération du profil', 'error');
       } finally {
         setLoading(false);
       }
     };
 
     initializeAuth();
-  }, []);
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
+  }, [addNotification]);
 
   return (
     <AppContext.Provider value={{ user, setUser, loading }}>
       {children}
     </AppContext.Provider>
   );
-}
-
-export function useApp() {
-  const context = useContext(AppContext);
-  if (context === undefined) {
-    throw new Error('useApp must be used within an AppProvider');
-  }
-  return context;
 } 

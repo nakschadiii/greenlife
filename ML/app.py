@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import joblib
 import pandas as pd
 
@@ -32,6 +33,7 @@ def decomposer_emissions(user_row):
 
 # Lancer l'app Flask
 app = Flask(__name__)
+CORS(app)  # Activer CORS pour toutes les routes
 
 @app.route('/predict', methods=['POST'])
 def predict():

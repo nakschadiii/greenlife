@@ -24,9 +24,9 @@ export interface Challenge {
   id: string;
   title: string;
   description: string;
-  reward: string;
-  duration: string;
-  progress: number;
+  points: number;
+  difficulty: 'easy' | 'medium' | 'hard';
+  completed?: boolean;
 }
 
 export interface Recommendation {
@@ -35,12 +35,14 @@ export interface Recommendation {
   description: string;
   potentialSavings: number;
   difficulty: 'easy' | 'medium' | 'hard';
-  category: string;
+  category: 'electricity' | 'water' | 'heating' | 'transport';
 }
+
+export type AlertType = 'success' | 'warning' | 'info' | 'error';
 
 export interface Alert {
   id: string;
-  type: 'warning' | 'success' | 'info';
+  type: AlertType;
   message: string;
   timestamp: Date;
 } 

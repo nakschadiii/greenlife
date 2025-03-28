@@ -1,21 +1,24 @@
-import { ReactNode } from 'react';
-import Navigation from './Navigation';
-import { useTheme } from './ThemeContext';
+import styled from '@emotion/styled';
+import { Outlet } from 'react-router-dom';
+import { Navbar } from './Navbar';
 
-interface LayoutProps {
-  children: ReactNode;
-}
+const LayoutContainer = styled.div`
+  min-height: 100vh;
+  background: var(--bg-primary);
+`;
 
-function Layout({ children }: LayoutProps) {
-  const { theme } = useTheme();
-  
+const MainContent = styled.main`
+  padding-top: var(--spacing-xl);
+`;
+
+export function Layout() {
   return (
-    <div className={`app-container theme-${theme}`}>
-      <Navigation />
-      <main className="main-content">
-        {children}
-      </main>
-    </div>
+    <LayoutContainer>
+      <Navbar />
+      <MainContent>
+        <Outlet />
+      </MainContent>
+    </LayoutContainer>
   );
 }
 

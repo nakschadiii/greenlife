@@ -1,39 +1,27 @@
 import { useState, useCallback } from 'react';
 import { logService } from '@/services/logService';
 
-type NotificationType = 'success' | 'error' | 'warning' | 'info';
-
 interface Notification {
   id: string;
-  type: NotificationType;
   message: string;
-  duration?: number;
+  type: 'success' | 'error' | 'info';
 }
 
 export function useNotification() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
-  const addNotification = useCallback((
-    message: string,
-    type: NotificationType = 'info',
-    duration: number = 5000
-  ) => {
+  const addNotification = useCallback((message: string, type: 'success' | 'error' | 'info') => {
     const id = Date.now().toString();
     const notification: Notification = {
       id,
-      type,
       message,
-      duration
+      type
     };
 
     setNotifications(prev => [...prev, notification]);
     logService.info('Nouvelle notification:', notification);
 
-    if (duration > 0) {
-      setTimeout(() => {
-        removeNotification(id);
-      }, duration);
-    }
+    setTimeout(() => removeNotification(id), 5000);
 
     return id;
   }, []);
