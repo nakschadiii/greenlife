@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ConsumptionResponse } from '@/types/consumption';
 import styled from '@emotion/styled';
-import { ConsumptionChart } from './ConsumptionChart';
+import { ConsumptionAreaChart } from './charts/ConsumptionAreaChart';
 
 const ResultsContainer = styled.div`
   margin-top: 24px;
@@ -95,7 +95,7 @@ export function ConsumptionResults({ results }: ConsumptionResultsProps) {
           <p>Logement: {results.details.logement_total_kg_mois.toFixed(2)} kg CO2/mois</p>
         </Section>
 
-        <ConsumptionChart data={results} />
+        <ConsumptionAreaChart data={results} />
 
         <ResultSection>
           <h3>Détails par catégorie</h3>

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import { ConsumptionCalculator } from '@/components/ConsumptionCalculator';
 import { useNavigate } from 'react-router-dom';
+import { ConsumptionAreaChart } from '@/components/charts/ConsumptionAreaChart';
 
 const PageContainer = styled.div`
   max-width: 800px;
