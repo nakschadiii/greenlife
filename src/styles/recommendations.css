@@ -1,0 +1,114 @@
+.recommendations-container {
+  padding: 2rem;
+}
+
+.savings-overview {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.recommendations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.recommendation-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-5px);
+}
+
+.recommendation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.recommendation-header h3 {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.difficulty-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.recommendation-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
+
+.savings {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.category-tag {
+  background: var(--bg-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Simulator styles */
+.savings-simulator {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.simulator-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.savings-result {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.savings-result h2 {
+  color: var(--success-color);
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.savings-details {
+  display: grid;
+  gap: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.difficulty-easy { background: var(--success-light); }
+.difficulty-medium { background: var(--warning-light); }
+.difficulty-hard { background: var(--danger-light); } 

@@ -1,0 +1,74 @@
+:root {
+  /* Couleurs de base */
+  --primary-color: #4CAF50;
+  --primary-dark: #388E3C;
+  --secondary-color: #2196F3;
+  --success-color: #8BC34A;
+  --warning-color: #FFC107;
+  --danger-color: #F44336;
+  --success-light: rgba(139, 195, 74, 0.1);
+  --warning-light: rgba(255, 193, 7, 0.1);
+  --danger-light: rgba(244, 67, 54, 0.1);
+
+  /* Couleurs de fond */
+  --bg-primary: #fff;
+  --bg-secondary: #f5f5f5;
+  --card-bg: #fff;
+  --nav-bg: #fff;
+  --input-bg: #fff;
+  --alert-bg: #FFF8E1;
+
+  /* Couleurs de texte */
+  --text-color: #333;
+  --text-secondary: #666;
+
+  /* Autres */
+  --border-color: #ddd;
+  --hover-bg: #f0f0f0;
+}
+
+[data-theme="dark"] {
+  --primary-color: #66BB6A;
+  --primary-dark: #4CAF50;
+  --text-color: #fff;
+  --text-secondary: #ccc;
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --card-bg: #1e1e1e;
+  --nav-bg: #1e1e1e;
+  --border-color: #333;
+  --hover-bg: #2c2c2c;
+  --danger-color: #f44336;
+  --danger-light: #311b1b;
+  --input-bg: #2c2c2c;
+  --alert-bg: #2D2D2D;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary);
+  color: var(--text-color);
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--bg-primary);
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+} 

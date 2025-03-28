@@ -1,0 +1,31 @@
+.app-container {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-color);
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+}
+
+.theme-light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-color: #333333;
+  --text-secondary: #666666;
+}
+
+.theme-dark {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-color: #ffffff;
+  --text-secondary: #cccccc;
+} 

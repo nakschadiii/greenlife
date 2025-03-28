@@ -1,0 +1,28 @@
+.badge {
+  background: var(--card-bg);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.badge.locked {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.badge-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge h4 {
+  margin: 0.5rem 0;
+  color: var(--text-color);
+}
+
+.badge p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+} 
