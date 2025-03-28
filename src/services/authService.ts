@@ -1,6 +1,8 @@
 import { User } from '@/types';
 import { AppError } from '@/utils/errorHandler';
 import { API_CONFIG } from '@/config/api.config';
+import supabase from '@/utils/supabase';
+import CryptoJS from 'crypto-js';
 
 interface UserCredentials {
   email: string;
@@ -61,16 +63,19 @@ class AuthService {
     try {
       this.validateCredentials({ email, password });
 
-      if (API_CONFIG.IS_MOCK) {
+      //if (API_CONFIG.IS_MOCK) {
+        const { data: LOOKUP_EMAIL, error } = await supabase.from('clients').select().or(`email.eq.${email},name.eq.${email}`).maybeSingle();
+
         // Simuler un délai réseau
         await new Promise(resolve => setTimeout(resolve, API_CONFIG.MOCK_DELAY));
 
-        if (email === MOCK_CREDENTIALS.email && password === MOCK_CREDENTIALS.password) {
-          localStorage.setItem(this.TOKEN_KEY, MOCK_USER.token);
-          localStorage.setItem(this.USER_KEY, JSON.stringify(MOCK_USER));
+        if (error || !LOOKUP_EMAIL) throw error;
+
+        if (CryptoJS.MD5(password).toString() === LOOKUP_EMAIL.password) {
+          localStorage.setItem(this.TOKEN_KEY, JSON.stringify({ id: LOOKUP_EMAIL.id }));
+          localStorage.setItem(this.USER_KEY, JSON.stringify(LOOKUP_EMAIL));
           
-          const { token, ...user } = MOCK_USER;
-          return user;
+          return LOOKUP_EMAIL;
         }
 
         throw new AppError(
@@ -78,7 +83,7 @@ class AuthService {
           'AUTH_ERROR',
           401
         );
-      }
+      //}
 
       // Code pour l'API réelle (quand elle sera disponible)
       throw new AppError(
